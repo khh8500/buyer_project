@@ -4,6 +4,13 @@ import lombok.Data;
 
 public class UserRequest {
 
+    // 로그인하기
+    @Data
+    public static class LoginDTO {
+        private String userId;
+        private String password;
+    }
+
     // 회원가입하기
     @Data
     public static class JoinDTO {
