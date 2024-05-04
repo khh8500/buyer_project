@@ -1,0 +1,46 @@
+{{> layout/header}}
+
+<div class="container" style="margin-top: 5%; margin-bottom: 5%">
+    <!--    enctype="multipart/form-data"-->
+    <div class="row">
+        <!-- 이미지 -->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <img src="" width="300" height="300"
+                 style="border-radius: 5%">
+        </div>
+
+        <!-- 상품 정보 입력 -->
+        <div class="col-lg-6 px-xl-10">
+
+            <form action="" method="post">
+                <input type="hidden" name="productId" value="product.id">
+
+                <div class="mb-3 mt-3">
+                    상 품 명 : <input name="name" type="text" class="form-control" value="product.name" readonly>
+                </div>
+                <div class="mb-3 mt-3">
+                    상품가격 : <input name="price" type="text" class="form-control" value="product.price" readonly>
+                </div>
+                <div class="mb-3 mt-3">
+                    <div>구매수량 : <span style="color: grey;">(재고 : product.qty)</span></div>
+                    <input name="qty" type="number" class="form-control" placeholder="수량을 입력해주세요" required>
+                </div>
+                <!--상품 정보 입력 끝-->
+
+                <!-- 구매하기 버튼 -->
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mt-3">구매하기</button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script src="/js/detail.js"></script>
+
+{{> layout/footer}}
