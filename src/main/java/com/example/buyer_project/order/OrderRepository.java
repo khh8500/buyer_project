@@ -44,4 +44,18 @@ public class OrderRepository {
         query.executeUpdate();
     }
 
+    // 상품 재고 업데이트
+    public void updateQty(Integer buyQty, Integer productId) {
+
+        String q = """
+                update Product p set p.qty = p.qty - :buyQty where p.id = :productId
+                """;
+        Query query = em.createQuery(q);
+
+        query.setParameter("productId", productId);
+        query.setParameter("buyQty", buyQty);
+
+        query.executeUpdate();
+    }
+
 }

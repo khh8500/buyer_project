@@ -29,14 +29,49 @@
 
                 <!-- 구매하기 버튼 -->
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary mt-3">구매하기</button>
+                    <button id="qtyCheck" type="submit" class="btn btn-primary mt-3">구매하기
+                    </button>
                 </div>
+                <script>
+                    // 페이지가 로드되면 바로 실행될 함수
+                    window.onload = function () {
+                        var productQty = {{product.qty}};
+                        var qtyCheckButton = document.getElementById("qtyCheck");
 
+                        if (productQty <= 0) {
+                            alert("죄송합니다. 해당 상품의 재고가 없습니다.");
+                            qtyCheckButton.disabled = true; // 재고없으면 버튼 비활성화
+                        }
+                    }
+
+                    // 구매하기 버튼 클릭 시 실행되는 함수
+                    function qtyCheckButtonHandler() {
+                        var productQty = {{product.qty}};
+                        var buyQty = document.getElementsByName("buyQty")[0].value; // 입력된 구매 수량 가져오기
+
+                        if (buyQty <= 0) {
+                            alert("구매 수량을 올바르게 입력해주세요.");
+                            return;
+                        }
+
+                        if (buyQty > productQty) {
+                            alert("죄송합니다. 해당 상품의 재고가 부족합니다.");
+                            document.getElementsByName("buyQty")[0].value = ""; // 입력된 수량 초기화
+                            return;
+                        }
+
+                        // 수량이 충분하면 폼을 서버로 제출
+                        document.querySelector("form").submit();
+                    }
+
+                    // 구매하기 버튼에 클릭 이벤트 핸들러 등록
+                    var qtyCheckButton = document.getElementById("qtyCheck");
+                    qtyCheckButton.addEventListener("click", qtyCheckButtonHandler);
+
+                </script>
             </form>
 
         </div>
-
-
     </div>
 </div>
 
